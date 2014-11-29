@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ \lstset{style=mystyle}
+
+\begin{document}
+\title{Study on co-occurring critics}
+\author{Ricardo Martins-Julien Le Van Suu}
+\date\today
+\maketitle
+\section{Introduction}
+A program which produces intelligent and non redundant critics should always be preferred. Having that kind of program can make a lot of difference in terms of productivity, cost efficiency,... 
+In a first part we will study the issues in a "dumb" way : that's say counting the critics and calculate the distance.
+For that, we will use two representatives packages. We will not put irrelevant issues, as theses should be always removed. We will study by method as this is more relevant for Checkstyle, as it is a very low level tool, it doesn't look for the relation between the classes , the coupling, ...
+Then, in a second part we will classify all the co-occurrences.
+For finishing, we will provide some high levels critics (For example sometimes some co occurring patterns may be great) and suggest a way to improve the CkeckStyle program.
+
+\section{Study on the co occurring critics}
+
+
+
+\section{Classification on those critics}
+\subsection{Redundant Critics}
+
+\subsection{Accidental Correlation}
+
+\subsection{Overlap Requires Merging}
+
+\subsection{Same niche}
+
+\subsection{Almost subset}
+
+\subsection{ll-defined critic.}
+
+\subsection{Noisy correlation}
+\paragraph{One error with Another error with a Third Error}  
+\begin{lstlisting}
+\end{lstlisting}
+
+\section{Improvements and comments on co occurring critics} 
+\subsection{High-level critics}
+
+\subsection{Suggested improvements}
+\section{Conclusion}
+This tool is recommended, as there is many pertinent hints. When the developer is used to the checkstyle conventions and the names sometimes not that explicit (NCSS, NPath, ...), the tool will probably be very efficient. But it's not working perfectly "out of the box", so in a first time it should take more time ...
+\end{document}
