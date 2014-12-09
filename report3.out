@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Study on the co occurring critics}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Sorting the results : Statistics method}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Results}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{First package: Root package }{subsection.2.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Second package : Graphic2D}{subsection.2.2}% 6
+\BOOKMARK [1][-]{section.3}{Classification on those critics : Package 1}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Redundant Critics}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Overlap Requires Splitting}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.3}{Overlap Requires Merging}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.4}{Same niche}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.5}{Almost subset}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.6}{High level critics}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.7}{Accidental Correlation}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.8}{Noisy correlation}{section.3}% 15
+\BOOKMARK [1][-]{section.4}{Classification on those critics : Package 2}{}% 16
+\BOOKMARK [2][-]{subsection.4.1}{Almost subset}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.2}{High level critics}{section.4}% 18
+\BOOKMARK [1][-]{section.5}{Improvements and comments on co occurring critics}{}% 19
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 20
