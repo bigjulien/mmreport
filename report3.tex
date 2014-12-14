@@ -40,25 +40,26 @@
 \section{Introduction}
 A program which produces intelligent and non redundant critics should always be preferred. Having that kind of program can make a lot of difference in terms of productivity, cost efficiency,... 
 In a first part we will study the issues in a "dumb" way : that's say counting the critics and calculate the distance.
-For that, we will use two representatives packages. We will not put irrelevant issues, as theses should be always removed. The study will be done by method as this is more relevant for Checkstyle. In every package, we pick only two classes as there are big classes which counts more than 500 errors. \\
-For finishing, we will provide some high levels critics (For example sometimes some co occurring patterns may be great) and suggest a way to improve the CkeckStyle program. The semi automatic excel file is available here : \url{https://github.com/bigjulien/mmreport}
+For that, we will use two representatives packages. We will not put irrelevant issues, as theses should be always removed. The study will be done by method as this is more fitting with Checkstyle searching patterns. In every package, we pick only two classes as there are big classes which counts more than 500 errors. \\
+For finishing, we will provide some high levels critics (For example sometimes some co occurring patterns may be great) and suggest a way to improve the CkeckStyle program. The automatic excel file is available here : \url{https://github.com/bigjulien/mmreport}
 
 \section{Study on the co occurring critics}
 
 \subsection{Sorting the results : Statistics method} 
-For finding the anomalies, we rely on some intervals : 
+For finding the anomalies, we will use the following rules : 
 
 \begin{itemize}
 
-\item The results in the range $[0 ; m-\sigma]$ ($\sigma$ the standard deviation and m the mean of the distances between one rules and all others, except itself) will be highlighted in green with red font(baucause if there is a correlation, it's a strong one). \\
-The reason is a value outside $[m-\sigma ; m+\sigma]$ is , in stats, a "abnormal" value. \\ Of course, we don't take the 0 coming from the C(n) compared to C(n) rule into account. \\ 
+\item The results in the range $]0 ; m-\sigma]$ ($\sigma$ the standard deviation and m the mean of the distances between one rules and all others, except itself) will be highlighted in green with red font(because if there is a correlation, it's a strong one). \\
+The reason is a value outside $[m-\sigma ; m+\sigma]$ is , in stats, a "abnormal" value. 
 
-\item The values between $[m-\sigma;0.9]$ will be also highlighted in green. Why 0.9 ? It is recommended in the paper, and furthermore, it seems to don't miss something (a lot of values are = 0.9). Actually, if we would want to be sure to have max precision, we would just do all the pairs of issues(which correspond to a interval of [0 - 1]. \\ However, the following results gives us also great information about the strength of the correlations. \\
+
+\item The values between $]m-\sigma;0.9]$ will be also highlighted in green. Why 0.9 ? It is recommended in the paper, and furthermore, it seems to don't miss something (a lot of values are = 0.9). Actually, if we would want to be sure to have max precision, we would just do all the pairs of issues(which correspond to a interval of [0 - 1]. \\ However, the following results gives us also great information about the strength of the correlations. \\
 It's always a trade off between precision and fastening of the process. \\
 
-All the results between 0 and 0.9 will be studied \\
+\item  All the results in green (between 0 and 0.9) will be studied \\
 
-\item the values which are founded to be interesting patterns will be in bold.
+\item The values which are founded to be interesting patterns (everything but accidental correlations) will be in bold.
 
 \end{itemize}
 
@@ -131,7 +132,7 @@ This is almost trivial : When the developer wants to make calculations, rename v
 \paragraph{CC05  - CC08} 
 "Line longer than" - "Exec count is X"  \\
 This means than the code is probably too complex. Theses two alerts together are giving us a hint to the code complexity, which is great.
-\paragraph{CC05:  - CC16,17:  }
+\paragraph{CC05  - CC16,17:  }
 "Line longer than" - "Complexity matters" \\
 Same like above.
 
@@ -145,9 +146,10 @@ Excepted because if there is a lot of nested ifs this increase the complexity. W
 Just one example will be putted there, as this is all the relations CC(i)-CC(j) we haven't mentioned before. \\ We won't highlight this kind of issues in excel as they are not interesting.
 \paragraph{CC01 - CC03}
 "Missing Javadoc Comment" -  " \} Should be on previous line" \\
+Obviously, these two have nothing related. This is not even speaking of same entities.
 
 \subsection{Noisy correlation}
-We won't highlight in the excel file this kind of issues.
+We won't highlight in the excel file this kind of issues. Most of the noisy correlations will be also accidental correlation.
 \paragraph{CC04 - CC05,06}
  "Param should be final" -  "Method not designed for extension"\&"Line is longer than"
 
@@ -174,8 +176,31 @@ In if there is likely a \{ so theses two are correlated, but it's actually good.
 This is actually giving us a hint of why this return count is hight : The method is not designed to be extended. Perhaps we should re factor and do inheritance. This is two good critics.
 
 
-\section{Improvements and comments on co occurring critics} 
-We can see that most of the problematic correlations are overlaps and subsets. \\We would recommend to split into more smaller part the problems and so having accuracy and not any overlap or subset. \\
+\section{Global improvements and comments on co occurring critics} 
+\subsection{Statistics}
+We will present statistics about the errors founded in the first package. \\
+\includegraphics[scale=0.4]{statsmm.png} \\ \\
+Number of critics in the interval $]0 ; m-\sigma]$ = 9 \\
+Number of critics in the interval $]m-\sigma;0,9]$ = 19 \\
+
+Theses are revealing some hints :
+\begin{itemize}
+\item Half of the correlation are "strong" ones, in the interval $]0 ; m-\sigma]$
+
+\item There is no ill defined critics : This is normal, because ill defined critics always produce false positives in our case (ex: "switch not allowed"), so we don't put those critics in the excel sheet.
+
+\item There is a lot of high level critics which are for the most expected/good critics.
+
+\item Most of the correlations are accidental, which reveals a great quality of the program.
+
+\item The "Same niche" correlations should not be considered as a problem. 
+
+
+\end{itemize}
+
+\subsection{Global recommendations}
+We can see that most of the problematic correlations can be resolved by merging. \\We would recommend to merge into more consequent part the problems and so, the program should gain in readability, although losing a little precision . \\ Many of the correlations are due to the different complexities measures, so this should be the first thing to look at.\\ \\
+On the overall, the program is doing well and the correlations should not be a problem. Theses great results are probably due to a big community which is testing and enhancing this tool.
 
 
 \section{Conclusion}
