@@ -39,9 +39,10 @@
 \maketitle
 \section{Introduction}
 A program which produces intelligent and non redundant critics should always be preferred. Having that kind of program can make a lot of difference in terms of productivity, cost efficiency,... 
-In a first part we will study the issues in a "dumb" way : that's say counting the critics and calculate the distance.
+In a first part we will study the issues in a simple way : that's say counting the critics and calculate the distance.
 For that, we will use two representatives packages. We will not put irrelevant issues, as theses should be always removed. The study will be done by method as this is more fitting with Checkstyle searching patterns. In every package, we pick only two classes as there are big classes which counts more than 500 errors. \\
 For finishing, we will provide some high levels critics (For example sometimes some co occurring patterns may be great) and suggest a way to improve the CkeckStyle program. The automatic excel file is available here : \url{https://github.com/bigjulien/mmreport}
+
 
 \section{Study on the co occurring critics}
 
@@ -50,16 +51,18 @@ For finding the anomalies, we will use the following rules :
 
 \begin{itemize}
 
+
 \item The results in the range $]0 ; m-\sigma]$ ($\sigma$ the standard deviation and m the mean of the distances between one rules and all others, except itself) will be highlighted in green with red font(because if there is a correlation, it's a strong one). \\
 The reason is a value outside $[m-\sigma ; m+\sigma]$ is , in stats, a "abnormal" value. 
 
 
-\item The values between $]m-\sigma;0.9]$ will be also highlighted in green. Why 0.9 ? It is recommended in the paper, and furthermore, it seems to don't miss something (a lot of values are = 0.9). Actually, if we would want to be sure to have max precision, we would just do all the pairs of issues(which correspond to a interval of [0 - 1]. \\ However, the following results gives us also great information about the strength of the correlations. \\
+\item The values between $]m-\sigma;0.9]$ will be also highlighted in green. The reason behind the value 0.9? It is recommended in the paper, and furthermore, it seems to don't miss something (a lot of values are = 0.9). Actually, if we would want to be sure to have max precision, we would just do all the pairs of issues(which correspond to a interval of [0 - 1]. \\ However, the following results gives us also great information about the strength of the correlations. \\
 It's always a trade off between precision and fastening of the process. \\
 
 \item  All the results in green (between 0 and 0.9) will be studied \\
 
-\item The values which are founded to be interesting patterns (everything but accidental correlations) will be in bold.
+\item The values which are considered to be interesting patterns (everything but accidental correlations) will be in bold.
+
 
 \end{itemize}
 
@@ -67,15 +70,15 @@ It's always a trade off between precision and fastening of the process. \\
 \subsubsection{First package: Root package }
 \includegraphics[scale=0.5]{names00.png}\\ \\
 \includegraphics[scale=0.5]{00.png} \\
-There is a sight error because Excepted @Param tag appears two times, but it doesn't influence final results.
+There is a slight error because "Excepted @Param tag" appears twice, but it doesn't influence our final results.
 
 \subsubsection{Second package : Graphic2D}
 \includegraphics[scale=0.5]{names01.png} \\ \\
 \includegraphics[scale=0.5]{01.png} \\
 
-The results are perhaps a lot disturbing because of some 0 outside the diagonal .\\
+The results are perhaps a bit surprising because of the existence of some 0's outside the diagonal .\\
 
-The explanation is that the rarer errors in terms of occurrences are in the bottom of the table (because we found them after the others, this is logical in a probability point of view). Theses errors are likely to have strange values, because of the few cases they are implied in. \\
+The explanation is that the rarer errors, in terms of occurrences, are in the bottom of the table (because we found them after the others, this is logical in a probabilistic point of view). Theses errors are likely to have strange values, because of the few cases they are implied in. \\
 However, we won't discuss them (as advised in the code critics documents) because there is almost no chance to discover an interesting pattern.
 
 
@@ -85,7 +88,7 @@ However, we won't discuss them (as advised in the code critics documents) becaus
 \subsection{Redundant Critics}
 \paragraph{CC16,CC17 - CC18 }
  "Cyclomatic" - "NCSS" \& "NPath" \\
-The two complexity issues seems to be correlated to the NPath but not correlated together. Why not just delete the NPath, which overlaps those two ?
+The two complexity issues seem to be correlated to the NPath but not correlated together. Why not just delete the NPath, which overlaps those two ?
 
 \subsection{Overlap Requires Splitting}
 \paragraph{CC09  - CC20}
@@ -104,7 +107,7 @@ Of course if there is a lot of executable statement the complexity is bad. As th
 \subsection{Same niche}
 \paragraph{CC01 - CC19} 
  "Missing Javadoc Comment" - "Uncommented Main method" \\
-Theses two are speaking of the same entity : comments so it's likely that the developer which don't judge useful to comment his main don't judge useful to comment the overall class also.
+Theses two are speaking of the same entity : comments so it's likely that the developer who didn't think it was useful to comment his main, had the same line of thought when it comes to commenting the overall class.
 \paragraph{CC03 - CC11} 
 "Variable should be declared Final" -  "Variable hides a field" \\
 These issues are about variables.
@@ -173,7 +176,7 @@ In if there is likely a \{ so theses two are correlated, but it's actually good.
 
 \paragraph{CC05 - CC08} 
  "Method not designed for extension" - "Return count is 3"
-This is actually giving us a hint of why this return count is hight : The method is not designed to be extended. Perhaps we should re factor and do inheritance. This is two good critics.
+This is actually giving us a hint of why this return count is hight : The method is not designed to be extended. Perhaps we should re factor and do inheritance. This is good critics.
 
 
 \section{Global improvements and comments on co occurring critics} 
